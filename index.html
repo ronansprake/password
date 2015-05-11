@@ -6,14 +6,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="apple-touch-icon" href="static/images/apple-icon-touch.png">
   <link rel="shortcut icon" href="static/images/favicon.ico">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans%3A400%2C700" />
   <title>Password</title>
 </head>
 
 <body>
-  <script>
-    window.console.log('hi');
-  </script>
   <p id="password"></p>
+
+  <style>
+    #password {
+      font-size: 1.3em;
+      font-family: 'Open Sans', Arial, sans-serif;
+      line-height: 2em;
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    var el = document.getElementById('password');
+    var generatePassword = function() {
+      var password = '',
+        word = function() {
+        for (a=b=[]; a++-2;) {
+            b += "bcdfghjklmnpqrstvwxz"[c=Math.floor(Math.random() * 90 + 10)*a%20]+"aeiouy"[c%6];
+        }
+        return b;
+      };
+      password += word();
+      password += Math.floor(Math.random() * 90 + 10);
+      password += word();
+      return password;
+    }
+    for (i=10; i>0; i--) {
+      el.innerHTML += generatePassword() + '<br>';
+    };
+  </script>
 </body>
 
 </html>
